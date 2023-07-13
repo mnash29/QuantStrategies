@@ -1,0 +1,6 @@
+notebook==6.5.4
+pandas==2.0.3
+
+# OANDA API and Wrapper
+v20==3.0.25.0
+tpqoa @ https://test-files.pythonhosted.org/packages/b5/9c/5d5068176601cff113d5f878c0c244ff1e6164f132aa633748c3c6b9b7a0/tpqoa-0.0.46.tar.gz#sha256=4fe5711bb573b5fbf306135caef0175182b98e2121dd907f67ca03c035437ce3
