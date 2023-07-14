@@ -1,5 +1,7 @@
 notebook==6.5.4
 pandas==2.0.3
+matplotlib==3.7.2
+yfinance==0.2.24
 
 # OANDA API and Wrapper
 v20==3.0.25.0
