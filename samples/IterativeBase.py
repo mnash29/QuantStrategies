@@ -78,7 +78,7 @@ class IterativeBase:
 
         # reduce cash balance by "purchase price"
         self.current_balance -= units * price
-        self.units += units
+        self.units += units  # type: ignore
         self.trades += 1
         print("{} |  Buying {} for {}".format(date, units, round(price, 5)))
 
@@ -94,7 +94,7 @@ class IterativeBase:
         self.current_balance += (
             units * price
         )  # increases cash balance by "purchase price"
-        self.units -= units
+        self.units -= units  # type: ignore
         self.trades += 1
         print("{} |  Selling {} for {}".format(date, units, round(price, 5)))
 

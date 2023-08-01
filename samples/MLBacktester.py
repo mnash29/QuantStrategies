@@ -44,7 +44,7 @@ class MLBacktester:
         raw = pd.read_csv(
             "five_minute_pairs.csv", parse_dates=["time"], index_col="time"
         )
-        raw = raw[self.symbol].to_frame().dropna()
+        raw = raw[self.symbol].to_frame().dropna()  # type: ignore
         raw = raw.loc[self.start:self.end]
         raw.rename(columns={self.symbol: "price"}, inplace=True)
         raw["returns"] = np.log(raw / raw.shift(1))

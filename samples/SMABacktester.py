@@ -48,7 +48,7 @@ class SMABacktester:
                           parse_dates=["Date"],
                           index_col="Date")
 
-        raw = raw[self.symbol].to_frame().dropna()
+        raw = raw[self.symbol].to_frame().dropna()  # type: ignore
         raw = raw.loc[self.start:self.end].copy()
         raw.rename(columns={self.symbol: "price"}, inplace=True)
         raw["returns"] = np.log(raw / raw.shift(1))
