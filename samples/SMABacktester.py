@@ -10,13 +10,15 @@ plt.style.use("seaborn-v0_8")
 class SMABacktester:
     """Class for the vectorized backtesting of SMA-based trading strategies."""
 
-    def __init__(self, symbol, SMA_S, SMA_L, start, end):
+    def __init__(self, symbol, datapath, SMA_S, SMA_L, start, end):
         """ Contruct a new SMABacktester.
 
         Args:
         ----
         symbol: str
             ticker symbol (instrument) to be backtested
+        datapath: str
+            the path to the csv dataset
         SMA_S: int
             moving window in bars (e.g. days) for shorter SMA
         SMA_L: int
@@ -27,6 +29,7 @@ class SMABacktester:
             end date for data import
         """
         self.symbol = symbol
+        self.path = datapath
         self.SMA_S = SMA_S
         self.SMA_L = SMA_L
         self.start = start
@@ -44,7 +47,7 @@ class SMABacktester:
     def get_data(self):
         """Import the data from forex_pairs.csv (source can be changed)."""
 
-        raw = pd.read_csv("forex_pairs.csv",
+        raw = pd.read_csv(self.path,
                           parse_dates=["Date"],
                           index_col="Date")
 

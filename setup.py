@@ -10,9 +10,9 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = [ ]
+requirements = []
 
-test_requirements = [ ]
+test_requirements = []
 
 setup(
     author="Matthew Nash",
@@ -35,7 +35,7 @@ setup(
     include_package_data=True,
     keywords='quantstrategies',
     name='quantstrategies',
-    packages=find_packages(include=['quantstrategies', 'quantstrategies.*']),
+    packages=find_packages(include=['quantstrategies', 'quantstrategies.*', 'samples']),
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/mnash29/quantstrategies',
