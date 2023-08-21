@@ -10,7 +10,7 @@ plt.style.use("seaborn-v0_8")
 class SMABacktester:
     """Class for the vectorized backtesting of SMA-based trading strategies."""
 
-    def __init__(self, symbol, datapath, SMA_S, SMA_L, start, end):
+    def __init__(self, symbol, datapath, SMA_S, SMA_L, start, end, tc):
         """ Contruct a new SMABacktester.
 
         Args:
@@ -27,6 +27,8 @@ class SMABacktester:
             start date for data import
         end: str
             end date for data import
+        tc: float
+            costs per trade
         """
         self.symbol = symbol
         self.path = datapath
@@ -35,6 +37,7 @@ class SMABacktester:
         self.start = start
         self.end = end
         self.results = None
+        self.tc = tc
         self.get_data()
         self.prepare_data()
 
@@ -81,6 +84,12 @@ class SMABacktester:
         data["position"] = np.where(data["SMA_S"] > data["SMA_L"], 1, -1)
         data["strategy"] = data["position"].shift(1) * data["returns"]
         data.dropna(inplace=True)
+
+        data["trades"] = data.position.diff().fillna(0).abs()
+
+        # Subtract trading costs
+        data.strategy = data.strategy - data.trades * self.tc
+
         data["creturns"] = data["returns"].cumsum().apply(np.exp)
         data["cstrategy"] = data["strategy"].cumsum().apply(np.exp)
         self.results = data

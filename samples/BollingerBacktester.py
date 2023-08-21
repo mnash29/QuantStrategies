@@ -52,7 +52,7 @@ class BollingerBacktester:
     def get_data(self):
         """Import the data from forex_pairs.csv (source can be changed)."""
 
-        raw = pd.read_csv(self.path, parse_dates=["time"], index_col="time")
+        raw = pd.read_csv(self.path, parse_dates=["Date"], index_col="Date")
 
         raw = raw[self.symbol].to_frame().dropna()  # type: ignore
         raw = raw.loc[self.start:self.end].copy()
